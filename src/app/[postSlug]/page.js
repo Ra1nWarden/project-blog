@@ -4,13 +4,19 @@ import BlogHero from "@/components/BlogHero";
 
 import styles from "./postSlug.module.css";
 import { MDXRemote } from "next-mdx-remote/rsc";
+import dynamic from "next/dynamic";
 import { loadBlogPost } from "@/helpers/file-helpers";
 import CodeSnippet from "@/components/CodeSnippet";
+
+const DivisionGroupsDemo = dynamic(() =>
+  import("@/components/DivisionGroupsDemo")
+);
 
 const getBlogPost = React.cache(loadBlogPost);
 
 const components = {
   pre: (props) => <CodeSnippet {...props} />,
+  DivisionGroupsDemo,
 };
 
 async function BlogPost({ params }) {
