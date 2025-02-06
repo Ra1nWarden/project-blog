@@ -5,8 +5,13 @@ import BlogHero from "@/components/BlogHero";
 import styles from "./postSlug.module.css";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { loadBlogPost } from "@/helpers/file-helpers";
+import CodeSnippet from "@/components/CodeSnippet";
 
 const getBlogPost = React.cache(loadBlogPost);
+
+const components = {
+  pre: (props) => <CodeSnippet {...props} />,
+};
 
 async function BlogPost({ params }) {
   const { postSlug } = await params;
@@ -15,7 +20,7 @@ async function BlogPost({ params }) {
     <article className={styles.wrapper}>
       <BlogHero title="Example post!" publishedOn={new Date()} />
       <div className={styles.page}>
-        <MDXRemote source={content} />
+        <MDXRemote source={content} components={components} />
       </div>
     </article>
   );
