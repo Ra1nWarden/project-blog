@@ -1,4 +1,4 @@
-"use client";
+'use client';
 import React from "react";
 import clsx from "clsx";
 import { Play, Pause, RotateCcw } from "react-feather";
