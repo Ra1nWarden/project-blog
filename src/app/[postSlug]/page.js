@@ -8,6 +8,9 @@ import dynamic from "next/dynamic";
 import { loadBlogPost } from "@/helpers/file-helpers";
 import CodeSnippet from "@/components/CodeSnippet";
 
+const CircularColorsDemo = dynamic(() =>
+  import("@/components/CircularColorsDemo")
+);
 const DivisionGroupsDemo = dynamic(() =>
   import("@/components/DivisionGroupsDemo")
 );
@@ -17,6 +20,7 @@ const getBlogPost = React.cache(loadBlogPost);
 const components = {
   pre: (props) => <CodeSnippet {...props} />,
   DivisionGroupsDemo,
+  CircularColorsDemo,
 };
 
 async function BlogPost({ params }) {
