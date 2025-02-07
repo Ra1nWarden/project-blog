@@ -8,6 +8,7 @@ import VisuallyHidden from "@/components/VisuallyHidden";
 
 import styles from "./Header.module.css";
 import Cookie from "js-cookie";
+import { DARK_TOKENS, LIGHT_TOKENS } from "@/constants";
 
 function Header({ initialTheme, className, ...delegated }) {
   const [theme, setTheme] = React.useState(initialTheme);
@@ -17,6 +18,16 @@ function Header({ initialTheme, className, ...delegated }) {
     setTheme(nextTheme);
     Cookie.set("color-theme", nextTheme, {
       expires: 1000,
+    });
+
+    const root = document.documentElement;
+
+    const tokens = nextTheme === "light" ? LIGHT_TOKENS : DARK_TOKENS;
+
+    root.setAttribute("data-color-theme", nextTheme);
+
+    Object.entries(tokens).forEach(([key, value]) => {
+      root.style.setProperty(key, value);
     });
   }
 
