@@ -27,10 +27,13 @@ const components = {
 async function BlogPost({ params }) {
   const { postSlug } = await params;
   try {
-    const { content } = await getBlogPost(postSlug);
+    const { frontmatter, content } = await getBlogPost(postSlug);
     return (
       <article className={styles.wrapper}>
-        <BlogHero title="Example post!" publishedOn={new Date()} />
+        <BlogHero
+          title={frontmatter.title}
+          publishedOn={frontmatter.publishedOn}
+        />
         <div className={styles.page}>
           <MDXRemote source={content} components={components} />
         </div>
