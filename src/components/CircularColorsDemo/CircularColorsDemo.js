@@ -1,4 +1,4 @@
-'use client';
+"use client";
 import React from "react";
 import clsx from "clsx";
 import { Play, Pause, RotateCcw } from "react-feather";
@@ -18,20 +18,20 @@ const COLORS = [
 function CircularColorsDemo() {
   const [running, setRunning] = React.useState(false);
   const [timeElapsed, setTimeElapsed] = React.useState(0);
-  const [selectedColor, setSelectedColor] = React.useState(COLORS[0]);
 
   React.useEffect(() => {
     const clock = window.setTimeout(() => {
       if (running) {
         const newTime = timeElapsed + 1;
         setTimeElapsed(newTime);
-        setSelectedColor(COLORS[newTime % COLORS.length]);
       }
     }, 1000);
     return () => {
       window.clearTimeout(clock);
     };
   }, [running, timeElapsed]);
+
+  const selectedColor = COLORS[timeElapsed % COLORS.length];
 
   return (
     <Card as="section" className={styles.wrapper}>
@@ -78,7 +78,6 @@ function CircularColorsDemo() {
             onClick={() => {
               setRunning(false);
               setTimeElapsed(0);
-              setSelectedColor(COLORS[0]);
             }}
           >
             <RotateCcw />
