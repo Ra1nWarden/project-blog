@@ -49,7 +49,7 @@ export async function generateMetadata({ params }) {
   try {
     const { frontmatter } = await getBlogPost(postSlug);
     return {
-      title: postSlug,
+      title: formatDistanceStrict.title,
       description: frontmatter.abstract,
     };
   } catch (error) {
