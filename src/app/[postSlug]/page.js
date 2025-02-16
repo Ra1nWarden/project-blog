@@ -19,7 +19,7 @@ const DivisionGroupsDemo = dynamic(() =>
 const getBlogPost = React.cache(loadBlogPost);
 
 const components = {
-  pre: (props) => <CodeSnippet {...props} />,
+  pre: CodeSnippet,
   DivisionGroupsDemo,
   CircularColorsDemo,
 };
