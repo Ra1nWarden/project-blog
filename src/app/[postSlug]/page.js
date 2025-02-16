@@ -4,17 +4,11 @@ import BlogHero from "@/components/BlogHero";
 
 import styles from "./postSlug.module.css";
 import { MDXRemote } from "next-mdx-remote/rsc";
-import dynamic from "next/dynamic";
 import { loadBlogPost } from "@/helpers/file-helpers";
 import CodeSnippet from "@/components/CodeSnippet";
 import { notFound } from "next/navigation";
-
-const CircularColorsDemo = dynamic(() =>
-  import("@/components/CircularColorsDemo")
-);
-const DivisionGroupsDemo = dynamic(() =>
-  import("@/components/DivisionGroupsDemo")
-);
+import CircularColorsDemo from "@/components/CircularColorsDemo";
+import DivisionGroupsDemo from "@/components/DivisionGroupsDemo";
 
 const getBlogPost = React.cache(loadBlogPost);
 
