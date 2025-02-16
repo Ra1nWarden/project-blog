@@ -8,6 +8,7 @@ import { LIGHT_TOKENS, DARK_TOKENS, BLOG_TITLE } from "@/constants";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import "./styles.css";
+import FramerMotionPreferences from "@/components/FramerMotionPreferences";
 
 const mainFont = Work_Sans({
   subsets: ["latin"],
@@ -23,22 +24,24 @@ const monoFont = Spline_Sans_Mono({
 });
 
 function RootLayout({ children }) {
-  const savedTheme = cookies().get('color-theme');
+  const savedTheme = cookies().get("color-theme");
   const theme = savedTheme?.value || "light";
 
   return (
-    <html
-      lang="en"
-      className={clsx(mainFont.variable, monoFont.variable)}
-      data-color-theme={theme}
-      style={theme === "light" ? LIGHT_TOKENS : DARK_TOKENS}
-    >
-      <body>
-        <Header initialTheme={theme} />
-        <main>{children}</main>
-        <Footer />
-      </body>
-    </html>
+    <FramerMotionPreferences>
+      <html
+        lang="en"
+        className={clsx(mainFont.variable, monoFont.variable)}
+        data-color-theme={theme}
+        style={theme === "light" ? LIGHT_TOKENS : DARK_TOKENS}
+      >
+        <body>
+          <Header initialTheme={theme} />
+          <main>{children}</main>
+          <Footer />
+        </body>
+      </html>
+    </FramerMotionPreferences>
   );
 }
 
